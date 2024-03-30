@@ -1,0 +1,17 @@
+<header id="site-header">
+    <nav class="navbar">
+        <section class="navbar-dashboard">
+            <a routerLink="/">Dashboard </a>
+            <div id="guest"*ngIf="!isLoggedIn">
+                <a class="button" routerLink="/login">Login</a>
+                <a class="button" routerLink="/register">Register</a>
+            </div>
+            <div id="user" *ngIf="isLoggedIn">
+                <span>Welcome, {{email}}</span>
+                <a class="button" routerLink="/profile">My Books</a>
+                <a class="button" routerLink="/add-book">Add Book</a>
+                <a class="button" (click)="logout()">Logout</a>
+            </div>
+        </section>
+    </nav>
+</header>
