@@ -29,6 +29,8 @@ export class BooksComponent implements OnInit {
         if (this.booksList.length > 0) {
           this.isEmpty = false;
         }
+        console.log(books);
+        
         this.isLoading = false;
       },
       error: (err) => {
