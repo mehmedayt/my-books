@@ -1,0 +1,66 @@
+<section id="login-page" class="login">
+  <form id="login-form" #form="ngForm" (ngSubmit)="login(form)">
+    <fieldset>
+      <legend>Login Form</legend>
+      <p class="field">
+        <label for="email">Email</label>
+        <span class="input">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Email"
+            ngModel
+            #inputEmail="ngModel"
+            required
+            [appEmail]="appEmailDomains"
+          />
+        </span>
+      </p>
+
+      <ng-container *ngIf="inputEmail.touched">
+        <p class="error" *ngIf="inputEmail.errors?.['required']">
+          Email is required!
+        </p>
+        <p class="error" *ngIf="inputEmail.errors?.['appEmailValidator']">
+          Email is not valid!
+        </p>
+      </ng-container>
+
+      <p class="field">
+        <label for="password">Password</label>
+        <span class="input">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            #inputPassword="ngModel"
+            ngModel
+            required
+            minlength="5"
+          />
+        </span>
+      </p>
+
+      <ng-container *ngIf="inputPassword.touched">
+        <p class="error" *ngIf="inputPassword.errors?.['required']">
+          Password is required!
+        </p>
+        <p class="error" *ngIf="inputPassword.errors?.['minlength']">
+          Password must be at least
+          {{inputPassword.errors?.['minlength']['requiredLength']}} characters!
+        </p>
+      </ng-container>
+
+      <input
+        class="button submit"
+        type="submit"
+        value="Login"
+        [disabled]="form.invalid"
+      />
+    </fieldset>
+
+    <p class="error">{{errorMessage}}</p>
+  </form>
+</section>

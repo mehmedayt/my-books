@@ -1,0 +1,13 @@
+<section id="my-books-page" class="my-books">
+    <h1>My Books</h1>
+    <ul class="my-books-list" *ngIf="!isEmpty">
+        <li class="otherBooks"*ngFor="let book of booksList">
+            <h3>{{book.title}}</h3>
+            <p>Type: {{book.type}}</p>
+            <p class="img"><img src="{{book.imageUrl}}"></p>
+            <a class="button" [routerLink]="'/books/' + book._id">Details</a>
+        </li>
+    </ul>
+
+    <p class="no-books" *ngIf="isEmpty">No books in database!</p>
+</section>

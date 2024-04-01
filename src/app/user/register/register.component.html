@@ -1,0 +1,92 @@
+<section id="register-page" class="register">
+  <form id="register-form" #form="ngForm" (ngSubmit)="register(form)">
+    <fieldset>
+      <legend>Register Form</legend>
+      <p class="field">
+        <label for="email">Email</label>
+        <span class="input">
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Email"
+            #inputEmail="ngModel"
+            ngModel
+            required
+            [appEmail]="appEmailDomains"
+          />
+        </span>
+      </p>
+
+      <ng-container *ngIf="inputEmail.touched">
+        <p class="error" *ngIf="inputEmail.errors?.['required']">
+          Email is required!
+        </p>
+        <p class="error" *ngIf="inputEmail.errors?.['appEmailValidator']">
+          Email is not valid!
+        </p>
+      </ng-container>
+
+      <p class="field">
+        <label for="password">Password</label>
+        <span class="input">
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            #inputPassword="ngModel"
+            ngModel
+            required
+            minlength="5"
+            (input)="onPasswordInput()"
+
+          />
+        </span>
+      </p>
+
+      <ng-container *ngIf="inputPassword.touched">
+        <p class="error" *ngIf="inputPassword.errors?.['required']">
+          Password is required!
+        </p>
+        <p class="error" *ngIf="inputPassword.errors?.['minlength']">
+          Password must be at least
+          {{inputPassword.errors?.['minlength']['requiredLength']}} characters!
+        </p>
+      </ng-container>
+
+      <p class="field">
+        <label for="repeat-pass">Repeat Password</label>
+        <span class="input">
+          <input
+            type="password"
+            name="rePassword"
+            id="repeat-pass"
+            placeholder="Repeat Password"
+            #inputRePassword="ngModel"
+            ngModel
+            required
+            minlength="5"
+            (input)="onPasswordInput()"
+          />
+        </span>
+      </p>
+
+      <ng-container *ngIf="inputRePassword.touched">
+        <p class="error" *ngIf="inputRePassword.errors?.['required']">
+          Repeat Password is required!
+        </p>
+        <p class="error" *ngIf="inputRePassword.errors?.['minlength']">
+          Repeat Password must be at least
+          {{inputRePassword.errors?.['minlength']['requiredLength']}} characters!
+        </p>
+        <p class="error" *ngIf="isDiffPass === false">
+          Passwords must match
+        </p>
+      </ng-container>
+      
+
+      <input class="button submit" type="submit" value="Register" [disabled]="form.invalid"/>
+    </fieldset>
+  </form>
+</section>
