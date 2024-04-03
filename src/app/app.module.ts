@@ -9,6 +9,8 @@ import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BooksComponent } from './books-list/books-list.component';
 import { UserModule } from './user/user.module';
+import { BookModule } from './book/book.module';
+import { AppInterceptorProvider } from './app.interceptor';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { UserModule } from './user/user.module';
     CoreModule,
     SharedModule,
     UserModule,
+    BookModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [AppInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,20 +1,20 @@
 
 <section id="dashboard-page" class="dashboard">
-    <h1>Dashboard</h1>
-  
-    <div *ngIf="isLoading">
-    </div>
-  
-    <ul class="other-books-list" *ngIf="!isLoading || !isEmpty">
-      <li class="otherBooks" *ngFor="let book of booksList">
-        <h3>{{book.title}}</h3>
-        <p>Type: {{book.type}}</p>
-        <p class="img"><img src="{{book.imageUrl}}"/></p>
-        <a class="button">Details</a>
-      </li>
-  
-     
-    </ul>
-    <p class="no-books" *ngIf="isEmpty">No books in database!</p>
-  </section>
-  
+  <h1>Dashboard</h1>
+
+  <div *ngIf="isLoading">
+    <app-loader/>
+  </div>
+
+  <ul class="other-books-list" *ngIf="!isLoading || !isEmpty">
+    <li class="otherBooks" *ngFor="let book of booksList">
+      <h3>{{book.title}}</h3>
+      <p>Type: {{book.type}}</p>
+      <p class="img"><img src="{{book.imageUrl}}"/></p>
+      <a class="button" [routerLink]="'/books/' + book._id">Details</a>
+    </li>
+
+   
+  </ul>
+  <p class="no-books" *ngIf="isEmpty">No books in database!</p>
+</section>
